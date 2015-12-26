@@ -70,9 +70,7 @@ var localVideo = document.getElementById('local-video');
   
   function onOfferText(text) {
     console.log("Received offer text...")
-    //console.log(text);
     setOfferText(text);
-    //makeAnswer();
   }
   
   function onAnswerText(text) {
@@ -89,55 +87,55 @@ var localVideo = document.getElementById('local-video');
  
   // ---------------------- video handling -----------------------
   function withVideoChecked() {
-   var inputElement = document.getElementById('with_video');
-   var checked = inputElement.checked;
-   return checked;
+    var inputElement = document.getElementById('with_video');
+    var checked = inputElement.checked;
+    return checked;
   }
 
   function withAudioChecked() {
-   var inputElement = document.getElementById('with_audio');
-   var checked = inputElement.checked;
-   return checked;
+    var inputElement = document.getElementById('with_audio');
+    var checked = inputElement.checked;
+    return checked;
   }
 
   function receiveVideoChecked() {
-   var inputElement = document.getElementById('receive_video');
-   var checked = inputElement.checked;
-   return checked;
+    var inputElement = document.getElementById('receive_video');
+    var checked = inputElement.checked;
+    return checked;
   }
 
   function receiveAudioChecked() {
-   var inputElement = document.getElementById('receive_audio');
-   var checked = inputElement.checked;
-   return checked;
+    var inputElement = document.getElementById('receive_audio');
+    var checked = inputElement.checked;
+    return checked;
   }
 
   function withStunChecked() {
-   var inputElement = document.getElementById('with_stun');
-   var checked = inputElement.checked;
-   return checked;
+    var inputElement = document.getElementById('with_stun');
+    var checked = inputElement.checked;
+    return checked;
   }
 
   function logStream(msg, stream) {
-   console.log(msg + ': id=' + stream.id);
+    console.log(msg + ': id=' + stream.id);
 
-   var videoTracks = stream.getVideoTracks();
-   if (videoTracks) {
-    console.log('videoTracks.length=' + videoTracks.length);
-    for (var i = 0; i < videoTracks.length; i++) {
-     var track = videoTracks[i];
-     console.log('track.id=' + track.id);
+    var videoTracks = stream.getVideoTracks();
+    if (videoTracks) {
+      console.log('videoTracks.length=' + videoTracks.length);
+      for (var i = 0; i < videoTracks.length; i++) {
+        var track = videoTracks[i];
+        console.log('track.id=' + track.id);
+      }
     }
-   }
-  
-   var audioTracks = stream.getAudioTracks();
-   if (audioTracks) {
-    console.log('audioTracks.length=' + audioTracks.length);
-    for (var i = 0; i < audioTracks.length; i++) {
-     var track = audioTracks[i];
-     console.log('track.id=' + track.id);
+    
+    var audioTracks = stream.getAudioTracks();
+    if (audioTracks) {
+      console.log('audioTracks.length=' + audioTracks.length);
+      for (var i = 0; i < audioTracks.length; i++) {
+        var track = audioTracks[i];
+        console.log('track.id=' + track.id);
+      }
     }
-   }
   }
  
   // start local video
@@ -147,17 +145,17 @@ var localVideo = document.getElementById('local-video');
     setupMediaConstraints();
 
     navigator.getUserMedia({video: withVideo, audio: withAudio},
-     function (stream) { // success
-      logStream('localStream', stream);
-      localStream = stream;
-      localVideo.src = window.URL.createObjectURL(stream);
-      localVideo.play();
-      localVideo.volume = 0;
-     },
-     function (error) { // error
-      console.error('getUserMedia error:', error);
-      return;
-     }
+      function (stream) { // success
+        logStream('localStream', stream);
+        localStream = stream;
+        localVideo.src = window.URL.createObjectURL(stream);
+        localVideo.play();
+        localVideo.volume = 0;
+      },
+      function (error) { // error
+        console.error('getUserMedia error:', error);
+        return;
+      }
     );
   }
 
@@ -183,7 +181,7 @@ var localVideo = document.getElementById('local-video');
   function prepareNewConnection() {
     var pc_config = {"iceServers":[]};
     if (withStunChecked()) {
-     pc_config = {"iceServers":[{"urls": "stun:stun.l.google.com:19302"}]};
+      pc_config = {"iceServers":[{"urls": "stun:stun.l.google.com:19302"}]};
     }
     var peer = null;
     try {
@@ -258,12 +256,12 @@ var localVideo = document.getElementById('local-video');
     console.log('makeOffer() mediaConstraints=' + JSON.stringify(mediaConstraints));
     peerConnection.createOffer(function (sessionDescription) { // in case of success
       peerConnection.setLocalDescription(sessionDescription,
-       function() {
-        console.log('setLocalDescription() succsess');
-       },
-       function(err) {
-         console.log('setLocalDescription() ERROR: ', err);
-       }
+        function() {
+          console.log('setLocalDescription() succsess');
+        },
+        function(err) {
+          console.log('setLocalDescription() ERROR: ', err);
+        }
       );
       console.log("-- Create Offer SDP --");
       console.log(sessionDescription);
